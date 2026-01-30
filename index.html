@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Outfit:wght@300;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+        .bg-name {
+            font-size: 43vw;
+            line-height: 0.8;
+            letter-spacing: -0.05em;
+            user-select: none;
+            z-index: 0;
+            opacity: 0.07;
+            white-space: nowrap;
+        }
+        .resume-link {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        .resume-link:hover {
+            border-bottom-color: #fff;
+        }
+        /* Style for the social icon */
+        .social-icon {
+            transition: opacity 0.3s ease;
+            opacity: 0.5;
+        }
+        .social-icon:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="h-full flex items-center justify-center m-0 p-0 overflow-hidden">
+
+    <h1 class="bg-name fixed inset-0 flex items-center justify-center font-black ">
+        LVKΛ
+    </h1>
+
+    <main class="relative z-10 text-center px-6">
+
+
+        <p class="text-xs tracking-[0.3em] uppercase opacity-50 mb-4">Full Stack Developer</p>
+        
+        <p class="max-w-md text-sm md:text-base font-light leading-relaxed mb-8 text-neutral-300">
+            <span class="font-bold">Luka</span>, a developer passionate about technology and coding.
+            Focused on building high-performance applications and modern tech solutions.
+        </p>
+       
+        <div class="flex flex-col items-center gap-6">
+            <a href="#" download class="resume-link text-xs tracking-[0.2em] uppercase font-semibold py-2">
+                Download Resume
+            </a>
+            <a href="https://github.com/devluka" target="_blank" class="social-icon text-2xl">
+                <i class="fa-brands fa-github"></i>
+            </a>    
+        
+        </div>
+    </main>
+
+</body>
+</html>
