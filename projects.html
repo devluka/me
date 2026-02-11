@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Initializing | Coming Soon</title>
+    <style>
+        :root {
+            --bg-color: #030712; /* Slate 950 */
+            --card-bg: rgba(17, 24, 39, 0.7); /* Slate 900 with opacity */
+            --accent: #3b82f6; /* Blue 500 */
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: "Fira Code", "Courier New", monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle Background Grid */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(500px) rotateX(60deg);
+            top: -50%;
+            z-index: -1;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Decorative Glow */
+        .glow {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--accent);
+            filter: blur(90px);
+            opacity: 0.2;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Terminal Status Line */
+        .status-line {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .blink { animation: blink 1s step-end infinite; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        h1 span { color: var(--accent); }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Input Group */
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: white;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus { border-color: var(--accent); }
+
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        /* Progress Bar */
+        .loader-container {
+            margin-top: 2rem;
+            text-align: left;
+        }
+        
+        .loader-text {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 65%; /* Set progress here */
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            animation: load 2s ease-out forwards;
+        }
+
+        /* Animations */
+        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes load { from { width: 0%; } to { width: 65%; } }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .container { padding: 2rem; width: 95%; }
+            h1 { font-size: 2rem; }
+            .input-group { flex-direction: column; }
+            button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="glow"></div>
+        
+        <div class="status-line">
+            > system_status: <span class="blink">building_pipeline</span>
+        </div>
+
+        <h1>
+            Architecting the <br> <span>Next Generation.</span>
+        </h1>
+
+        <p>
+            We are currently compiling a high-performance solution focused on scalability and modern design patterns. The stack is being optimized for release.
+        </p>
+
+        <form class="input-group" onsubmit="event.preventDefault(); alert('Email registered to batch queue.');">
+            <input type="email" placeholder="dev@example.com" required>
+            <button type="submit">Notify Me</button>
+        </form>
+
+        <div class="loader-container">
+            <div class="loader-text">
+                <span>COMPILING ASSETS</span>
+                <span>65%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
